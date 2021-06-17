@@ -1,0 +1,73 @@
+{% extends 'stnk/home.html' %}
+{% block content %}
+    <br>
+    <div class="row">
+        <div class="col-md">
+            <a href="{% url 'tambah-data' %}" class="btn btn-info">Tambah Data</a>
+            <a href="{% url 'tambah-opd' %}" class="btn btn-primary">Tambah OPD</a>
+            <div class="card card-body" style="text-align: center;">
+                <h1>Data</h1>
+            </div>
+            <div class="card card-body">
+                <table id ="table" class="table table-bordered table-hover table-responsive table-striped ">
+                    <thead class="alert-warning thead-dark">
+                        <tr>
+                            <th>No</th>
+                            <th>Opd</th>
+                            <th>kode barang</th>
+                            <th>nama barang</th>
+                            <th>nomor register</th>
+                            <th>tahun pembelian</th>
+                            <th>pabrik</th>
+                            <th>rangka</th>
+                            <th>nomor polisi</th>
+                            <th>bpkb</th>
+                            <th>harga</th>
+                            <th>keterangan</th>
+                            <th>roda</th>
+                            <th>bpkb disimpan</th>
+                            <th>pajak</th>
+                            <th>pengesahan</th>
+                            <th>penggantian stnk</th>
+                            <th>kondisi</th>
+                            <th>aktif</th>
+                            <th>masa aktif</th>
+                            <th>action</th>                            
+                        </tr> 
+                    </thead>
+                    <tbody>
+                    {% for i in stnk %}
+                        <tr>
+                            <th>{{forloop.counter}}</th>
+                            <td>{{i.opd}}</td>
+                            <td>{{i.kode_barang}}</td>
+                            <td>{{i.nama_barang}}</td>
+                            <td>{{i.nomor_register}}</td>
+                            <td>{{i.tahun_pembelian}}</td>
+                            <td>{{i.pabrik}}</td>
+                            <td>{{i.rangka}}</td>
+                            <td>{{i.nomor_polisi}}</td>
+                            <td>{{i.bpkb}}</td>
+                            <td>{{i.harga}}</td>
+                            <td>{{i.keterangan}}</td>
+                            <td>{{i.roda}}</td>
+                            <td>{{i.bpkb_disimpan}}</td>
+                            <td>{{i.pajak}}</td>
+                            <td>Rp {{i.pengesahan}}</td>
+                            <td>Rp {{i.penggantian_stnk}}</td>
+                            <td>{{i.kondisi}}</td>
+                            <td>{{i.aktif}}</td>
+                            <td>{{i.masa_aktif|timeuntil}}</td>
+                            <td>
+                                <a href="{% url 'editdata' i.id %}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{% url 'hapus' i.id %}" class="btn btn-sm btn-danger" onclick="return confirm('hapus bro ? ')">Hapus</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
